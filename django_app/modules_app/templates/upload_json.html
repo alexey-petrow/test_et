@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+<body>
+{% block content %}
+
+{% include 'includes/link_to_functions_table.html' %}
+
+<h1>{{ title }}</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+</form>
+
+{% endblock %}
+</body>
