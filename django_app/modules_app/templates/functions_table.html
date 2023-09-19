@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Available Functions</title>
+</head>
+<body>
+
+<h1>Available Functions</h1>
+
+<table border="1">
+    <tr>
+        <th>Модуль</th>
+        <th>Функция</th>
+        <th>Описание</th>
+        <th>Код</th>
+    </tr>
+    {% for function in functions %}
+    <tr>
+        <td>{{ function.module }}</td>
+        <td>{{ function.name }}</td>
+        <td>{{ function.docstring }}</td>
+        <td><code>{{ function.code }}</code></td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
