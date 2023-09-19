@@ -1,0 +1,21 @@
+{
+    "module": "sorting_module",
+    "function": "version_sorting_function",
+    "data": {
+		"ERROR number 1": {
+		    "ident": "2.4.11",
+		    "value": " test   test   "
+        },
+        "ERROR number 2": {
+		    "ident": "2.4.12",
+		    "value": " test   test   "
+        },
+        "ERROR number 3": {
+		    "ident": "2.1.3",
+		    "value": " test   test   "
+        },"ERROR number 4": {
+		    "ident": "1.11.3",
+		    "value": " test   test   "
+        }
+	}
+}
