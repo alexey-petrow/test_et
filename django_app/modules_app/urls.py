@@ -1,5 +1,7 @@
-from django.urls import path, include
+from django.urls import path
+
+from modules_app.views.functions_table_view import get_functions_table
 
 urlpatterns = [
-    # path('/', get_all_functions),
+    path('', get_functions_table, name='functions_table'),
 ]

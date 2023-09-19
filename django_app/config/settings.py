@@ -85,3 +85,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MODULES_DIR_NAME = 'modules_to_load'
+MODULES_DIR = BASE_DIR / MODULES_DIR_NAME
+ALLOWED_MODULE_EXTENSIONS = ['py']
