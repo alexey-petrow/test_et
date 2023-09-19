@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+<body>
+{% block content %}
+
+{% include 'includes/link_to_functions_table.html' %}
+
+<h1>{{ title }}</h1>
+
+<p>Результат:</p>
+<pre>{{ result }}</pre>
+
+{% include 'includes/link_to_upload_json.html' %}
+
+{% endblock %}
+</body>

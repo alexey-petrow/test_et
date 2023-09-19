@@ -1,6 +1,6 @@
 def _sort_by_version(item: tuple[str, dict]) -> list[int]:
     """
-    Help function for perform sorting.
+    Help function for using in sorted() method.
     Retrieves information about version from provided data.
     Converts string '2.12.4', to list of ints [2, 12, 4]
     Args:

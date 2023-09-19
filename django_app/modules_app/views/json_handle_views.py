@@ -1,6 +1,6 @@
 import importlib
 
-from rest_framework import views
+from rest_framework import views, status
 from rest_framework.response import Response
 
 
@@ -19,7 +19,8 @@ class JsonHandlerAPIView(views.APIView):
             function = getattr(module, function_name)
 
             result = function(request.data)
-            return Response({'result': result})
+            return Response(data={'result': result},
+                            status=status.HTTP_200_OK)
 
         except ImportError:
             raise ModuleApiException(detail=f'Unknown module {module_name}')

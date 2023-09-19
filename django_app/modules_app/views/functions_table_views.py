@@ -51,5 +51,6 @@ def get_functions_table(request):
 
     return render(request,
                   template_name='functions_table.html',
-                  context={'functions': functions_data},
+                  context={'title': 'Available Functions',
+                           'functions': functions_data},
                   )

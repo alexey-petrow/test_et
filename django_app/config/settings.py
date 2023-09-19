@@ -36,7 +36,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,3 +91,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MODULES_DIR_NAME = 'modules_to_load'
 MODULES_DIR = BASE_DIR / MODULES_DIR_NAME
 ALLOWED_MODULE_EXTENSIONS = ['py']
+
+BACKEND_URL = 'http://127.0.0.1:8000/'
