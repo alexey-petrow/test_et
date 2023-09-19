@@ -15,8 +15,8 @@ def _get_modules_list(path_to_modules_dir: Path,
     Args:
         path_to_modules_dir: (Path) Path to the directory with files.
         allowed_extensions: (list[str]) Allowed file extensions.
-
-    Returns: (list[str]) List of file names without extension.
+    Returns:
+        (list[str]) List of file names without extension.
     """
     modules_list = []
     all_files: list[str] = os.listdir(path_to_modules_dir)
@@ -38,6 +38,8 @@ def get_functions_table(request):
         try:
             module = importlib.import_module(f'{MODULES_DIR_NAME}.{module_name}')
             for name, func in inspect.getmembers(module, inspect.isfunction):
+                if name.startswith(('_', '__')):
+                    continue
                 functions_data.append({
                     'module': module_name,
                     'name': name,
