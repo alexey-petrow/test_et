@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 
 from django.shortcuts import render
+from django.views.generic import TemplateView
 
 from config.settings import MODULES_DIR_NAME, MODULES_DIR, ALLOWED_MODULE_EXTENSIONS
 
@@ -27,14 +28,9 @@ def _get_modules_list(path_to_modules_dir: Path,
     return modules_list
 
 
-def get_functions_table(request):
-    functions_data: list[dict] = []
-    module_names: list[str] = _get_modules_list(
-        path_to_modules_dir=MODULES_DIR,
-        allowed_extensions=ALLOWED_MODULE_EXTENSIONS,
-    )
-
-    for module_name in module_names:
+def _get_functions_data(modules: list[str]) -> list[dict]:
+    functions_data = []
+    for module_name in modules:
         try:
             module = importlib.import_module(f'{MODULES_DIR_NAME}.{module_name}')
             for name, func in inspect.getmembers(module, inspect.isfunction):
@@ -48,9 +44,19 @@ def get_functions_table(request):
                 })
         except ImportError:
             pass
+    return functions_data
 
-    return render(request,
-                  template_name='functions_table.html',
-                  context={'title': 'Available Functions',
-                           'functions': functions_data},
-                  )
+
+class FunctionsTableView(TemplateView):
+    template_name = 'functions_table.html'
+    extra_context = {'title': 'Available Functions'}
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        module_names: list[str] = _get_modules_list(
+            path_to_modules_dir=MODULES_DIR,
+            allowed_extensions=ALLOWED_MODULE_EXTENSIONS,
+        )
+        functions_data: list[dict] = _get_functions_data(module_names)
+        context_data['functions'] = functions_data
+        return context_data
